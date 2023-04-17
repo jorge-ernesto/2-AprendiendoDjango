@@ -1,0 +1,37 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %} Formularios en Django {% endblock %}
+
+{% block content %}
+
+    <h1 class="title">Formularios en Django</h1>
+
+    {% comment 'Comentario' %}
+        Comentario que no se vera en la renderizacion HTML
+    {% endcomment %}
+
+    {% comment 'Errores del Formulario' %}
+        <!-- Ver los Errores del formulario usando la variable form -->
+        {% if form.errors %}
+            <strong class="rojo">
+                Hay errores en el Formulario
+                {{ form.errors }}
+            </strong>
+        {% endif %}
+        <hr />
+    {% endcomment %}
+
+    <form action="" method="POST"> <!-- Si no se especifica action se envia a la misma url -->
+        {% csrf_token %}
+
+        {% comment 'Comentario' %}
+            {{ form }}       <!-- Lo renderiza sin etiquetas. Muestra los errores arriba de los inputs -->
+            {{ form.as_ul }} <!-- Lo renderiza dentro de etiquetas ul. Muestra los errores arriba de las etiquetas -->
+        {% endcomment %}
+
+        {{ form.as_p }} <!-- Lo renderiza dentro de etiquetas p. Muestra los errores arriba de las etiquetas -->
+
+        <input type="submit" value="Guardar">
+    </form>
+
+{% endblock %}

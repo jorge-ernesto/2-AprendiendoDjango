@@ -1,0 +1,54 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %} Listado de articulos {% endblock %}
+
+{% block content %}
+
+    <h1 class="title">Listado de articulos</h1>
+
+    <!-- Mensajes Flash -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Listado de articulos -->
+    {% for articulo in articulos %}
+        <article class="article-item">
+            {% comment 'Verificamos imagen' %}
+                {{ articulo.image.url }}
+                {{ articulo.image }}
+            {% endcomment %}
+
+            {% if articulo.image != 'null' and articulo.image.url|length >= 1 %}
+                <div class="image">
+                    <img src="{{articulo.image.url}}" />
+                </div>
+            {% endif %}
+
+            <div class="data">
+                <h2>{{articulo.id}}. {{articulo.title}}</h2>
+                <span class="date">{{articulo.created_at}}</span>
+
+                {% comment %}
+                    {% if articulo.public %}
+                        <strong>Publicado</strong>
+                    {% else %}
+                        <strong>Privado</strong>
+                    {% endif %}
+                {% endcomment %}
+
+                <p>
+                    {{articulo.content}}
+                    <a class="btn btn-delete" href="{% url 'borrar_articulo' id=articulo.id %}">Eliminar</a>
+                </p>
+            </div>
+
+            <div class="clearfix"></div>
+        </article>
+    {% endfor %}
+
+{% endblock %}

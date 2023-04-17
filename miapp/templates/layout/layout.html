@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} | Victor Robles</title>
+
+    <!-- Cargamos archivos estaticos -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <!-- Cabecera de la página -->
+    <header>
+        <div id="logotipo">
+            <!-- Logo django -->
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <h1>Sitio web en Django</h1>
+        </div>
+    </header>
+
+    <!-- Navbar de la página -->
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li>
+                <a href="{% url 'articulos' %}">Articulos</a>
+            </li>
+            <li>
+                <a href="{% url 'create_article' %}">Crear articulos</a>
+            </li>
+            <li>
+                <a href="{% url 'create_full_article' %}">Crear articulos 2</a>
+            </li>
+            <li>
+                <a href="{% url 'hola_mundo' %}">Hola Mundo</a>
+            </li>
+            <li>
+                <a href="{% url 'pagina' %}">Pagina de pruebas</a>
+            </li>
+            <li>
+                <a href="{% url 'contacto' 'Victor' 'Robles' %}">Contacto</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+
+    <!-- Contenido de la página -->
+    <div id="content">
+
+        <div class="box">
+            {% block content %}
+                <!-- Codigo que viene de templates -->
+                <strong>Contenido del bloque original!!!</strong>
+            {% endblock %}
+        </div>
+
+    </div>
+
+    <!-- Footer de la página -->
+    <footer>
+        Master en Python &copy; Victor Robles WEB - {% now "d/m/Y h:m:s" %}
+    </footer>
+
+</body>
+
+</html>

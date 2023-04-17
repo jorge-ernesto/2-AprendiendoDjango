@@ -1,0 +1,45 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %} Pagina de pruebas {% endblock %}
+
+{% block content %}
+
+    <h1 class="title">Pagina de mi web</h1>
+    <p>{{ "Creado por Victor Robles" }}</p>
+    <p>{{ "Creado por Victor Robles"|cut:" " }}</p>
+    <p>{{ "Creado por Victor Robles ñññ"|cut:"ñ" }}</p>
+    <br/>
+
+    <p>{{ texto|default:"No hay nada" }}</p>
+    <br/>
+
+    <p>
+        {{ lista }}          <br/>
+        {{ lista|first }}    <br/>
+        {{ lista|last }}     <br/>
+        {{ lista|join:', ' }}<br/>
+        {{ lista|length }}   <br/>
+        {{ lista|random }}   <br/>
+    </p>
+    <br/>
+
+    <p>
+        {{ "texto pruebas"|length }}<br/>
+        {{ "texto pruebas"|upper }} <br/>
+        {{ "texto pruebas"|lower }} <br/>
+    </p>
+    <br/>
+
+    <p>
+        {{ "<h1>texto</h1> <strong>pruebas</strong>" }}          <br/>
+        {{ "<h1>texto</h1> <strong>pruebas</strong>"|striptags }}<br/>
+        {{ "<h1>texto</h1> <strong>pruebas</strong> hola <p> mundo </p>"|striptags|wordcount }}<br/>
+    </p>
+    <br/>
+
+    <!-- Cargamos filtros -->
+    {% load filters %}
+    {{ "Victor Robles WEB"|saludo|safe }} <!-- safe interpreta contenido como HTML -->
+    {{ "Victor"|saludo|safe }}
+
+{% endblock %}
